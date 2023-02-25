@@ -1,5 +1,5 @@
 def applyRule(num, nodeList):
-    print(f"\nStarting number: {num}")
+    # print(f"\nStarting number: {num}")
     nodes = 0
     while num != 1:
         if num % 2 == 1:
@@ -9,7 +9,7 @@ def applyRule(num, nodeList):
             
         nodes += 1
 
-    print(f"Nodes: {nodes}\n")
+    # print(f"Nodes: {nodes}\n")
     nodeList.append(nodes)
 
     return nodeList
@@ -17,7 +17,7 @@ def applyRule(num, nodeList):
 
 nodeList = []
 
-for i in range(500000):
+for i in range(1, 500000):
     nodeList = applyRule(i, nodeList)
 
 maxNodes = max(nodeList)
@@ -27,9 +27,10 @@ for i in range(len(nodeList)):
     if maxNodes == nodeList[i]:
         maxNodeNumbers.append(i+1)
 
-print(f"Maximum nodes: {maxNodes} for {maxNodeNumbers}")
+# print(f"Maximum nodes: {maxNodes} for {maxNodeNumbers}")
 
-f = open("nodeValues.txt", "a")
-for i in range(len(nodeList)):
-    f.write(str(i+1) + ", " + str(nodeList[i]) + "\n")
-f.close()
+with open ("nodevalues.txt", 'w') as f:
+    for i, node in enumerate(nodeList):
+        f.writelines(f"{i+1}: {node}\n")
+
+print("done")
